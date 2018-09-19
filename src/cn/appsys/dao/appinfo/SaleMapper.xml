@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.appsys.dao.appinfo.SaleMapper">
+	
+	<!-- int getAppInfoCount(); -->
+	<!-- int getAppInfoCount(QueryAppInfoVO queryAppInfoVO); -->
+	<select id="daoSaleAddOrRemov_getStatus"  resultType="_int" parameterType="int">
+		<!-- app_info.status = data_dictionary.valueId valueName=已上架(4) 已下架(5) -->
+		<!-- (@Param("pid") Integer pid); -->
+		select status from app_info WHERE id=#{pid};
+		
+	</select>
+	<update id="daoSaleAddOrRemov"  parameterType="int">
+		<!-- app_info.status = data_dictionary.valueId valueName=已上架(4) 已下架(5) -->
+		<!-- (@Param("pid") Integer pid); -->
+		UPDATE app_info SET status=#{status} WHERE id=#{pid};
+		
+	</update>
+	
+	
+	
+</mapper>
