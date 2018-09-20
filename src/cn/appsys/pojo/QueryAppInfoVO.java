@@ -16,7 +16,22 @@ public class QueryAppInfoVO {
 	private Integer pageIndex; // 当前页
 	private Integer startIndex; // 起始页
 	private Integer pageSize; // 每页显示条数
+	//--------------add----------------------
+	private String queryFlatformStr; // 平台--平台描述信息
+	private String queryStatusStr; // 状态--状态描述信息
 	
+	public String getQueryStatusStr() {
+		return queryStatusStr;
+	}
+	public void setQueryStatusStr(String queryStatusStr) {
+		this.queryStatusStr = queryStatusStr;
+	}
+	public String getQueryFlatformStr() {
+		return queryFlatformStr;
+	}
+	public void setQueryFlatformStr(String queryFlatformStr) {
+		this.queryFlatformStr = queryFlatformStr;
+	}
 	public Integer getPageIndex() {
 		return pageIndex;
 	}

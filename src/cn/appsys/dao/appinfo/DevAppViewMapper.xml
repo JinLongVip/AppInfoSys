@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.appsys.dao.appinfo.DevAppViewMapper">
+<select id="daoDevAppView" resultType="AppInfo" parameterType="int"> 
+select i.*,
+(select c.categoryName from app_category c where i.categoryLevel1 = c.id) as categoryLevel1Name,
+(select c.categoryName from app_category c where i.categoryLevel2 = c.id) as categoryLevel2Name,
+(select c.categoryName from app_category c where i.categoryLevel3 = c.id) as categoryLevel3Name
+from app_info i where i.id=#{pid};
+
+
+</select>
+<select id="daoDevAppViewVO" resultType="QueryAppInfoVO" parameterType="int"> 
+select d.valueName as  queryStatusStr,
+(select d.valueName from data_dictionary d,app_info i 
+where i.id=#{pid} and d.valueId=i.flatformId and d.typeCode='APP_FLATFORM') 
+ as  queryFlatformStr  
+ from 
+ data_dictionary d,app_info i where i.id=#{pid} 
+ and d.valueId=i.status and d.typeCode='APP_STATUS';
+
+</select>
+
+
+</mapper>

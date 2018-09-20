@@ -3,14 +3,12 @@ package cn.appsys.web;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.websocket.server.PathParam;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
@@ -21,14 +19,20 @@ import cn.appsys.pojo.DataDictionary;
 import cn.appsys.pojo.QueryAppInfoVO;
 import cn.appsys.service.appcategory.AppCategoryService;
 import cn.appsys.service.appinfo.AppInfoService;
-import cn.appsys.service.appinfo.SaleSer;
 import cn.appsys.service.datadictionary.DataDictionaryService;
 import cn.appsys.util.PageBean;
-
 @Controller
 @RequestMapping("/dev/app")
-public class DevAppInfoController {
+public class AppinfoaddCtr {
 
+	/*---------------------- 新增a p p基础信息------------------------------------*/
+	@RequestMapping("/appinfoadd")
+		public  String addNewAppInfo() {
+		 
+		return "developer/appinfoadd";
+	}
+	
+	/*^^^^^^^^^^^^^新增a p p基础信息^^^^^^^^^^^^^^^^^^^*/
 	@Resource
 	private AppInfoService appInfoService;
 	
@@ -43,14 +47,14 @@ public class DevAppInfoController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("getclist/{pid}")
+	@RequestMapping("getclist2/{pid}")
 	public String getCategoryList(@PathVariable Integer pid) {
 		List<AppCategory> appCategoryList = appCategoryService.getAppCategoryListByParentId(pid);
 		return JSON.toJSONString(appCategoryList);
 	}
 	
-	@RequestMapping("/list")
-	public String appList(Model model,@ModelAttribute QueryAppInfoVO queryAppInfoVO) {
+	@RequestMapping("/appinfoadd_list")
+	public String appinfoadd_list(Model model,@ModelAttribute QueryAppInfoVO queryAppInfoVO) {
 		
 		Integer currentPageNo = 1;
 		if(queryAppInfoVO.getPageIndex() != null) {
@@ -87,10 +91,11 @@ public class DevAppInfoController {
 		model.addAttribute("flatFormList", flatFormList);
 		model.addAttribute("categoryLevel1List", categoryLevel1List);
 		model.addAttribute("queryAppInfoVO", queryAppInfoVO);
-		return "developer/appinfolist";
+		return "developer/appinfoadd";
 	}
 
 
+	
 	
 	
 	
