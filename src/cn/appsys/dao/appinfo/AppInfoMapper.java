@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import cn.appsys.pojo.AppInfo;
+import cn.appsys.pojo.AppVersion;
 import cn.appsys.pojo.QueryAppInfoVO;
 
 public interface AppInfoMapper {
@@ -17,5 +18,13 @@ public interface AppInfoMapper {
 	int getAppInfoCount(QueryAppInfoVO queryAppInfoVO);
 
 	List<AppInfo> getAppInfoList(QueryAppInfoVO queryAppInfoVO);
+
+	List<AppInfo> getAppInfoCheck(Integer aid);
+
+	List<AppVersion> getAppVersionList(Integer vid);
+
+
+
+
 
 }

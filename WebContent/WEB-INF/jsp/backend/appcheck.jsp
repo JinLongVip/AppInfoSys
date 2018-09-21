@@ -6,7 +6,7 @@
   <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
       <div class="x_title">
-        <h2>查看并审核APP信息 <i class="fa fa-user"></i>${userSession.userName}</small></h2>
+        <h2>查看并审核APP信息 <i class="fa fa-user"></i>${backLoginUser.userName}</small></h2>
              <div class="clearfix"></div>
       </div>
       <div class="x_title">
@@ -15,12 +15,12 @@
       </div>
       <div class="x_content1">
         <form class="form-horizontal form-label-left" action="checksave" method="post">
-          <input type="hidden" name="id" value="${appInfo.id}">
+          <input type="hidden" name="id" value="${appInfoList[0].id}">
           <div class="item form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">软件名称 <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input class="form-control col-md-7 col-xs-12" value="${appInfo.softwareName}" 
+              <input class="form-control col-md-7 col-xs-12" value="${appInfoList[0].softwareName}" 
               type="text" readonly="readonly">
             </div>
           </div>
@@ -29,7 +29,7 @@
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input type="text" class="form-control col-md-7 col-xs-12" 
-              value="${appInfo.APKName}" readonly="readonly">
+              value="${appInfoList[0].APKName}" readonly="readonly">
             </div>
           </div>
           
@@ -38,7 +38,7 @@
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input class="form-control col-md-7 col-xs-12" 
-              	value="${appInfo.supportROM}" type="text" readonly="readonly">
+              	value="${appInfoList[0].supportROM}" type="text" readonly="readonly">
             </div>
           </div>
           <div class="item form-group">
@@ -46,14 +46,14 @@
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input class="form-control col-md-7 col-xs-12" readonly="readonly"
-              	value="${appInfo.interfaceLanguage}" type="text">
+              	value="${appInfoList[0].interfaceLanguage}" type="text">
             </div>
           </div>
           <div class="item form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">软件大小 <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" value="${appInfo.softwareSize}"
+              <input type="text" value="${appInfoList[0].softwareSize}"
               class="form-control col-md-7 col-xs-12" readonly="readonly">
             </div>
           </div>
@@ -62,7 +62,7 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">下载次数 <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" value="${appInfo.downloads}"
+              <input type="text" value="${appInfoList[0].downloads}"
                class="form-control col-md-7 col-xs-12" readonly="readonly">
             </div>
           </div>
@@ -71,7 +71,7 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12"  for="select">所属平台 <span class="required">*</span></label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input type="text" class="form-control col-md-7 col-xs-12" 
-              	value="${appInfo.flatformName}" readonly="readonly">
+              	value="${appInfoList[0].flatformName}" readonly="readonly">
             
             </div>
           </div>
@@ -79,7 +79,7 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="select">所属分类 <span class="required">*</span></label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input type="text" class="form-control col-md-7 col-xs-12" 
-              	value="${appInfo.categoryLevel1Name} --> ${appInfo.categoryLevel2Name} --> ${appInfo.categoryLevel3Name}" readonly="readonly">
+              	value="${appInfoList[0].categoryLevel1Name} --> ${appInfoList[0].categoryLevel2Name} --> ${appInfoList[0].categoryLevel3Name}" readonly="readonly">
             </div>
           </div>
           <div class="item form-group">
@@ -87,7 +87,7 @@
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
             	<input type="text" class="form-control col-md-7 col-xs-12" 
-              	value="${appInfo.statusName}" readonly="readonly">
+              	value="${appInfoList[0].statusName}" readonly="readonly">
             </div>
           </div>
           <div class="item form-group">
@@ -95,7 +95,7 @@
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <textarea class="form-control col-md-7 col-xs-12" readonly="readonly"> 
-              ${appInfo.appInfo}</textarea>
+              ${appInfoList[0].appInfo}</textarea>
             </div>
           </div>
            <div class="item form-group">
@@ -103,11 +103,11 @@
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
 			 <c:choose> 
-				  <c:when test="${appInfo.logoPicPath == null || appInfo.logoPicPath == ''}">   
+				  <c:when test="${appInfoList[0].logoPicPath == null || appInfoList[0].logoPicPath == ''}">   
 				    	暂无
 				  </c:when> 
 				  <c:otherwise>   
-				    <img src="${appInfo.logoPicPath }?m=1" width="100px;"/> 
+				    <img src="${appInfoList[0].logoPicPath }?m=1" width="100px;"/> 
 				  </c:otherwise> 
               </c:choose> 
             </div>
@@ -137,7 +137,7 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">版本号 <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input class="form-control col-md-7 col-xs-12" value="${appVersion.versionNo }" 
+              <input class="form-control col-md-7 col-xs-12" value="${appVersionList[0].versionNo }" 
               type="text" readonly="readonly" >
             </div>
           </div>
@@ -145,7 +145,7 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">版本大小 <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="number" value="${appVersion.versionSize }" class="form-control col-md-7 col-xs-12">
+              <input type="number" value="${appVersionList[0].versionSize }" class="form-control col-md-7 col-xs-12">
             </div>
           </div>
        
@@ -161,7 +161,7 @@
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <textarea class="form-control col-md-7 col-xs-12">
-              ${appVersion.versionInfo }</textarea>
+              ${appVersionList[0].versionInfo }</textarea>
             </div>
           </div>
            <div class="item form-group">
@@ -169,12 +169,12 @@
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
             <c:choose> 
-			  <c:when test="${appVersion.downloadLink == null || appVersion.downloadLink == ''}">   
+			  <c:when test="${appVersionList[0].downloadLink == null || appVersionList[0].downloadLink == ''}">   
 			    	暂无
 			  </c:when> 
 			  <c:otherwise>   
-			    <p>${appVersion.apkFileName}&nbsp;&nbsp;
-			    <a href="${appVersion.downloadLink}" >下载</a>
+			    <p>${appVersionList[0].apkFileName}&nbsp;&nbsp;
+			    <a href="${appVersionList[0].downloadLink}" >下载</a>
 			    </p>
 			  </c:otherwise> 
             </c:choose> 

@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cn.appsys.dao.appinfo.AppInfoMapper;
 import cn.appsys.pojo.AppInfo;
+import cn.appsys.pojo.AppVersion;
 import cn.appsys.pojo.QueryAppInfoVO;
 import cn.appsys.util.PageBean;
 
@@ -30,7 +31,16 @@ public class AppInfoServiceImpl implements AppInfoService {
 		List<AppInfo> result = appInfoMapper.getAppInfoList(queryAppInfoVO);
 		pageBean.setResult(result);
 	}
-	
-	
+
+	@Override
+	public List<AppInfo> getAppInfoCheck(Integer aid) {
+		return appInfoMapper.getAppInfoCheck(aid);
+	}
+
+	@Override
+	public List<AppVersion> getAppVersionList(Integer vid) {
+		return appInfoMapper.getAppVersionList(vid);
+	}
+
 	
 }

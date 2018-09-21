@@ -70,4 +70,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 						limit #{startIndex},#{pageSize}
 	</select>							 
 	
+	<!-- List<AppInfo> getAppInfoCheck(Integer aid); -->
+	<select id="getAppInfoCheck" resultType="AppInfo" parameterType="AppInfo">
+		SELECT i.softwareName,i.APKName,i.supportROM,i.interfaceLanguage,
+			i.softwareSize,i.downloads,
+			(select d.valueName from data_dictionary d where d.valueId = i.flatformId and d.typeCode = 'APP_FLATFORM') as flatformName,
+			i.appInfo,(select d.valueName from data_dictionary d where d.valueId = i.status and d.typeCode = 'APP_STATUS') as statusName,
+			(select c.categoryName from app_category c where c.id = i.categoryLevel1) as categoryLevel1Name,
+			(select c.categoryName from app_category c where c.id = i.categoryLevel2) as categoryLevel2Name,
+			(select c.categoryName from app_category c where c.id = i.categoryLevel3) as categoryLevel3Name
+			FROM app_info i
+				WHERE i.id= #{aid}
+	</select>
+	
+	<!-- List<AppVersion> getAppVersionList(Integer vid); -->
+	<select id="getAppVersionList" resultType="AppVersion" parameterType="AppVersion">
+		select v.*,i.softwareName  as appName,i.APKName  as apkFileName 
+			from app_version v,app_info  i  
+				where  v.id = i.versionId and v.id = #{vid}
+	</select>
 </mapper>

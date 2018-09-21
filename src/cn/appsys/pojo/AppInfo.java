@@ -229,4 +229,19 @@ public class AppInfo {
 	public void setModifyDate(Date modifyDate) {
 		this.modifyDate = modifyDate;
 	}
+	@Override
+	public String toString() {
+		return "AppInfo [id=" + id + ", softwareName=" + softwareName + ", APKName=" + APKName + ", supportROM="
+				+ supportROM + ", interfaceLanguage=" + interfaceLanguage + ", updateDate=" + updateDate
+				+ ", softwareSize=" + softwareSize + ", devId=" + devId + ", appInfo=" + appInfo + ", status=" + status
+				+ ", onSaleDate=" + onSaleDate + ", offSaleDate=" + offSaleDate + ", categoryLevel3=" + categoryLevel3
+				+ ", downloads=" + downloads + ", flatformId=" + flatformId + ", createdBy=" + createdBy
+				+ ", creationDate=" + creationDate + ", modifyBy=" + modifyBy + ", modifyDate=" + modifyDate
+				+ ", statusName=" + statusName + ", flatformName=" + flatformName + ", categoryLevel3Name="
+				+ categoryLevel3Name + ", devName=" + devName + ", categoryLevel1=" + categoryLevel1
+				+ ", categoryLevel2=" + categoryLevel2 + ", categoryLevel1Name=" + categoryLevel1Name
+				+ ", categoryLevel2Name=" + categoryLevel2Name + ", logoPicPath=" + logoPicPath + ", logoLocPath="
+				+ logoLocPath + ", versionId=" + versionId + ", versionNo=" + versionNo + "]";
+	}
+	
 }
