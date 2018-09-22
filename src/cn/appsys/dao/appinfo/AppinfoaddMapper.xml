@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.appsys.dao.appinfo.AppinfoaddMapper">
+	
+	
+	<update id="appInfoAddSaveDo"  parameterType="AppInfo">
+		INSERT INTO `app_info` 
+(`softwareName`,
+`APKName`,`supportROM`,`interfaceLanguage`,
+`softwareSize`,`downloads`,`flatformId`,
+`categoryLevel1`,`categoryLevel2`,`categoryLevel3`,
+`status`,`appInfo`,`logoPicPath`,`logoLocPath`)
+
+VALUE(#{softwareName},
+#{APKName},#{supportROM},#{interfaceLanguage},
+#{softwareSize},#{downloads},#{flatformId},
+#{categoryLevel1},#{categoryLevel2},#{categoryLevel3},
+#{status},#{appInfo},#{logoPicPath},#{logoLocPath})
+
+		
+	</update>
+	
+	
+	
+</mapper>

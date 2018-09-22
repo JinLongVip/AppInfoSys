@@ -1,10 +1,18 @@
 package cn.appsys.web;
 
+import java.io.File;
+import java.io.IOException;
 import java.math.BigDecimal;
+import java.sql.Array;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
+import org.apache.commons.io.FilenameUtils;
 import org.apache.ibatis.annotations.Param;
 import org.apache.jasper.tagplugins.jstl.core.Redirect;
 import org.springframework.stereotype.Controller;
@@ -15,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
 
@@ -25,6 +35,7 @@ import cn.appsys.pojo.QueryAppInfoVO;
 import cn.appsys.service.appcategory.AppCategoryService;
 import cn.appsys.service.appinfo.AppInfoService;
 import cn.appsys.service.datadictionary.DataDictionaryService;
+import cn.appsys.service.devuser.AppinfoaddSer;
 import cn.appsys.util.PageBean;
 @Controller
 @RequestMapping("/dev/app")
@@ -105,46 +116,75 @@ public class AppinfoaddCtr {
 	
 	
 	/*---------------------- 新增a p p基础信息----保存表单数据到数据库------------------------------------*/
-	
-	private AppInfo appInfoTo;
-	@RequestMapping(value="/appinfoaddsave.html",method=RequestMethod.POST)
+	@Resource
+	private AppinfoaddSer appinfoaddSer;
+	@RequestMapping(value="/appinfoaddsave.html")
 	                               
-			public String appInfoAddSaveTo(@RequestParam(required=false) String softwareName,
-																	@RequestParam(required=false) String APKName,
-																	@RequestParam(required=false) String supportROM,
-																	@RequestParam(required=false)  String interfaceLanguage,
-																	@RequestParam(required=false) BigDecimal softwareSize,
-																	@RequestParam(required=false)  Integer downloads,
-																	@RequestParam(required=false)  Integer queryFlatformId,
-																	@RequestParam(required=false)  Integer status,
-																	@RequestParam(required=false)  String appInfo) {
-		appInfoTo = new AppInfo();
+			public String appInfoAddSaveTo(HttpServletRequest request,HttpSession session,
+																	@ModelAttribute AppInfo appInfo_mo ,
+																	@RequestParam (value="a_logoPicPath",required=false)MultipartFile multipartFile) {
+		String logoPicPath="" ;
+		String logoLocPath="";
+		if (!multipartFile.isEmpty()) {
+				String realPath=session.getServletContext().getRealPath("/statics/uploadfiles");
+				int fileSize = 2000000;
+				List<String> fileNameList=Arrays.asList("jpg","png","bmp");
+				long size = multipartFile.getSize();
+				String fileName=multipartFile.getOriginalFilename();
+				String extension = FilenameUtils.getExtension(fileName);
+				if (size>fileSize) {
+					request.setAttribute("idPicPathError", "上传文件超出大小限制!");
+					return "develop/app";
+				}else if (!fileNameList.contains(extension)) {
+					request.setAttribute("idPicPathError", "不支持此类文件上传!");
+					return "develop/appinfoadd";
+				}else {
+					//f g f 不同系统下的"分隔符"
+					String fgf = File.separator;
+				String newFileName=System.currentTimeMillis()+"_pic"+"."+extension;
+				String relativePath=request.getContextPath().substring(1);
+						realPath +=fgf;
+						relativePath =fgf+relativePath+fgf+"statics"+fgf+"uploadfiles"+fgf;
+				System.out.println("relativePath"+relativePath);
+				System.out.println("realPath"+realPath);
+				File desc =new File(realPath+newFileName);
+				 logoPicPath =relativePath+newFileName;
+				 logoLocPath=realPath+newFileName;
+				try {
+					multipartFile.transferTo(desc);
+				} catch (IllegalStateException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+					
+				}
+				
+				
+			}
+		
+		
+		
+		
+		appInfo_mo.setLogoPicPath(logoPicPath);
+		appInfo_mo.setLogoLocPath(logoLocPath);
+			int num= appinfoaddSer.appInfoAddSaveSo(appInfo_mo);
+				System.out.println(appInfo_mo);
+				
+				if (num>=1) {
+					System.out.println("添加成功");
+				} else {
+					System.out.println("添加失败");
+				}
+				
+		       /*System.out.println("test1");*/		
+				return ("redirect:/dev/app/list");
+			/*	return "test";*/
 
-		
-		appInfoTo.setSoftwareName(softwareName);
-		appInfoTo.setAPKName(APKName);
-		appInfoTo.setSupportROM(supportROM);
-		appInfoTo.setInterfaceLanguage(interfaceLanguage);
-		appInfoTo.setSoftwareSize(softwareSize);
-		appInfoTo.setDownloads(downloads);
-		appInfoTo.setFlatformId(queryFlatformId);
-		appInfoTo.setStatus(status);
-		appInfoTo.setAppInfo(appInfo);
-		
-		
-		
-		
-		
-		
-				System.out.println(appInfoTo);
-				
-				
-				
-				
-				
-				return "developer/appinfolist";
-				
-				
+	
 			}
 	
 			/*^^^^^^^^^^^^^以上新增a p p基础信息^^^^^^^^^^^^^^^^^^^*/

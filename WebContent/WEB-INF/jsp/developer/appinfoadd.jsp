@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="common/header.jsp"%>
+<div>
+      <a href="${pageContext.request.contextPath }/dev/app/appinfoaddsave.html" class="btn btn-link">test</a>
+      </div>
 <div class="clearfix"></div>
 <div class="row">
   <div class="col-md-12 col-sm-12 col-xs-12">
@@ -78,7 +81,7 @@
           <div class="item form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12"  for="select">所属平台 <span class="required">*</span></label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              	<select name="queryFlatformId" class="form-control">
+              	<select name="flatformId" class="form-control">
 <!-- 所属平台选择菜单 name="queryFlatformId"-->
 						<c:if test="${flatFormList != null }">
 							<option value="">--请选择--</option>
@@ -113,7 +116,7 @@
             <div class="col-md-6 col-sm-6 col-xs-12">
               <!-- <select name="categoryLevel2" id="categoryLevel2" class="form-control"  required="required"></select> -->
 <!-- 二级分类选择菜单  name="queryCategoryLevel2 -->
-        						<select name="queryCategoryLevel2" id="queryCategoryLevel2" class="form-control">
+        						<select name="categoryLevel2" id="queryCategoryLevel2" class="form-control">
         							<c:if test="${categoryLevel2List != null }">
 									   <option value="">--请选择--</option>
 									   <c:forEach var="appCategory" items="${categoryLevel2List}">
@@ -130,7 +133,7 @@
             <div class="col-md-6 col-sm-6 col-xs-12">
              <!--  <select name="categoryLevel3" id="categoryLevel3" class="form-control"  required="required"></select> -->
  <!-- 三级分类选择菜单   name="queryCategoryLevel3" -->
-        						<select name="queryCategoryLevel3" id="queryCategoryLevel3" class="form-control">
+        						<select name="categoryLevel3" id="queryCategoryLevel3" class="form-control">
         							<c:if test="${categoryLevel3List != null }">
 									   <option value="">--请选择--</option>
 									   <c:forEach var="appCategory" items="${categoryLevel3List}">
@@ -177,5 +180,6 @@
     </div>
   </div>
 </div>
+	
 <%@include file="common/footer.jsp"%>
 <script src="${pageContext.request.contextPath }/statics/localjs/appinfoadd.js"></script>

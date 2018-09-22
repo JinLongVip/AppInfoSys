@@ -231,16 +231,16 @@ public class AppInfo {
 	}
 	@Override
 	public String toString() {
-		return "AppInfo [id=" + id + ", softwareName=" + softwareName + ", APKName=" + APKName + ", supportROM="
-				+ supportROM + ", interfaceLanguage=" + interfaceLanguage + ", updateDate=" + updateDate
-				+ ", softwareSize=" + softwareSize + ", devId=" + devId + ", appInfo=" + appInfo + ", status=" + status
-				+ ", onSaleDate=" + onSaleDate + ", offSaleDate=" + offSaleDate + ", categoryLevel3=" + categoryLevel3
-				+ ", downloads=" + downloads + ", flatformId=" + flatformId + ", createdBy=" + createdBy
-				+ ", creationDate=" + creationDate + ", modifyBy=" + modifyBy + ", modifyDate=" + modifyDate
-				+ ", statusName=" + statusName + ", flatformName=" + flatformName + ", categoryLevel3Name="
-				+ categoryLevel3Name + ", devName=" + devName + ", categoryLevel1=" + categoryLevel1
-				+ ", categoryLevel2=" + categoryLevel2 + ", categoryLevel1Name=" + categoryLevel1Name
-				+ ", categoryLevel2Name=" + categoryLevel2Name + ", logoPicPath=" + logoPicPath + ", logoLocPath="
+		return "AppInfo [id=" + id + ", softwareName=" + softwareName + ", APKName=" + APKName + ", supportROM="+"\n"
+				+ supportROM + ", interfaceLanguage=" + interfaceLanguage + ", updateDate=" + updateDate+"\n"
+				+ ", softwareSize=" + softwareSize + ", devId=" + devId + ", appInfo=" + appInfo + ", status=" + status+"\n"
+				+ ", onSaleDate=" + onSaleDate + ", offSaleDate=" + offSaleDate + ", categoryLevel3=" + categoryLevel3+"\n"
+				+ ", downloads=" + downloads + ", flatformId=" + flatformId + ", createdBy=" + createdBy+"\n"
+				+ ", creationDate=" + creationDate + ", modifyBy=" + modifyBy + ", modifyDate=" + modifyDate+"\n"
+				+ ", statusName=" + statusName + ", flatformName=" + flatformName + ", categoryLevel3Name="+"\n"
+				+ categoryLevel3Name + ", devName=" + devName + ", categoryLevel1=" + categoryLevel1+"\n"
+				+ ", categoryLevel2=" + categoryLevel2 + ", categoryLevel1Name=" + categoryLevel1Name+"\n"
+				+ ", categoryLevel2Name=" + categoryLevel2Name + ", logoPicPath=" + logoPicPath + ", logoLocPath="+"\n"
 				+ logoLocPath + ", versionId=" + versionId + ", versionNo=" + versionNo + "]";
 	}
 	
