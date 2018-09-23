@@ -134,10 +134,10 @@ public class AppinfoaddCtr {
 				String extension = FilenameUtils.getExtension(fileName);
 				if (size>fileSize) {
 					request.setAttribute("idPicPathError", "上传文件超出大小限制!");
-					return "develop/app";
+					return "developer/appinfoadd";
 				}else if (!fileNameList.contains(extension)) {
 					request.setAttribute("idPicPathError", "不支持此类文件上传!");
-					return "develop/appinfoadd";
+					return "developer/appinfoadd";
 				}else {
 					//f g f 不同系统下的"分隔符"
 					String fgf = File.separator;

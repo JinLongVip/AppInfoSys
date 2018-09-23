@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.appsys.dao.appinfo.AppVersionAddMapper">
+	<!-- 	List<AppVersion>appVersionAddDo_getlist();
+	int appVersionAddDo_tosave(AppVersion appVersion); -->
+	<select id="appVersionAddDo_getlist"  resultType="AppVersion" parameterType="int">
+		SELECT v.*,i.`softwareName` AS appName   
+FROM `app_version` v,`app_info` i WHERE v.`appId` = #{pid} AND i.`id`=`appId`;
+		
+	</select>
+	<update id="appVersionAddDo_tosave"  parameterType="AppVersion">
+		INSERT INTO `app_version` 
+(`versionNo`,`versionSize`,`publishStatus`,`versionInfo`,`apkLocPath`,`apkFileName`,appId,downloadLink)
+VALUE
+(#{versionNo},#{versionSize},#{publishStatus},#{versionInfo},#{apkLocPath},#{apkFileName},#{appId},#{downloadLink});
+		
+	</update>
+	
+	
+	
+</mapper>
